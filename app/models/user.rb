@@ -13,6 +13,7 @@ class User < ApplicationRecord
   # 被フォロー関係を通じて参照→followed_idをフォローしている人
 
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  # 【class_name: "Relationship"】は省略可能
   has_many :followings, through: :relationships, source: :followed
   validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
   validates :introduction, length: { maximum: 50 }
