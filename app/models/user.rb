@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   # 【class_name: "Relationship"】は省略可能
   has_many :followings, through: :relationships, source: :followed
+  # 与フォロー関係を通じて参照→follower_idをフォローしている人
   validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 end
